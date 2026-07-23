@@ -60,6 +60,7 @@ def train_model(model, training_batches, val_batches, epochs, vocab_size,
                 lr=0.001, device=None, checkpoint_path="data/weights/best_model.pt"):
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(device)
     model = model.to(device)
 
     criterion = nn.CrossEntropyLoss()
