@@ -72,6 +72,7 @@ def train_model(model, training_batches, val_batches, epochs, vocab_size,
 
     for epoch in range(epochs):
         total_train_loss = 0
+        f_pass = 0
         model.train()
         for batch_x, batch_y in training_batches:
             batch_x, batch_y = batch_x.to(device), batch_y.to(device)
@@ -85,6 +86,10 @@ def train_model(model, training_batches, val_batches, epochs, vocab_size,
             loss = criterion(logits.view(-1, vocab_size), batch_y.view(-1))
             train_loss.append(loss.item())
             total_train_loss += loss.item()
+
+            f_pass += 1
+            if f_pass % 300 == 0:
+                print(f"Current Loss: {total_train_loss/f_pass}")
 
             #Set up optimizer to update parameters based on gradients
             optimizer.zero_grad()   #Removes the gradients and sets it to 0, otherwise we would accumulate gradients
