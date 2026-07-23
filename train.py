@@ -114,3 +114,17 @@ def train_model(model, training_batches, val_batches, epochs, vocab_size,
         #Measures how confident a model is in it's predicition
         perplexity = math.exp(avg_val_loss)
         print(f"Epoch: {epoch}\nTraining Loss | {avg_train_loss} Validation Loss {avg_val_loss} | Perplexity: {perplexity}")
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--epochs", type=int, default=10)
+    parser.add_argument("--lr", type=float, default=0.001)
+    parser.add_argument("--checkpoint_path", type=str, default="data/weights/best_model.pt")
+    args = parser.parse_args()
+
+    train_model(
+        model, training_batches, val_batches,
+        epochs=args.epochs, vocab_size=VOCAB_SIZE,
+        lr=args.lr, checkpoint_path=args.checkpoint_path
+    )
