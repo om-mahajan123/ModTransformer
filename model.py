@@ -87,7 +87,7 @@ class AttentionHead(nn.Module):
         #Creating the mask for the attention head, we are storing as attribute
         #Finds the upper triangle and sets it to ones --> bools
         mask = torch.triu(torch.ones(context_window, context_window), diagonal=1).bool()
-        self.register_buffer("rotation_mat", mask)
+        self.register_buffer("mask", mask)
     
     def forward(self, batch):
         #Actual Q @ K.T in attention, the transpose just swaps the last two dims in the shape
