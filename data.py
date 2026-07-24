@@ -53,7 +53,7 @@ def TrainTokenizer(raw_data, save_name):
 def Tokenize(raw_data, save_name):
     my_tokenizer = TrainTokenizer(raw_data, save_name)
     tokenized_data = my_tokenizer.encode(raw_data).ids
-    print("Tokenized all data")
+    print("Tokenized all data\n")
     return tokenized_data
 
 #This cell is where we create our training batches
